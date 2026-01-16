@@ -1,0 +1,33 @@
+package com.fitness.microservice.controller;
+
+import com.fitness.microservice.dto.RegisterRequest;
+import com.fitness.microservice.dto.UserResponse;
+import com.fitness.microservice.service.UserService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+@RestController
+@RequestMapping("/api/userService")
+@AllArgsConstructor
+public class UserController {
+
+    private UserService userService;
+
+    @PostMapping("/register")
+    public ResponseEntity<UserResponse> register(@Valid  @RequestBody RegisterRequest request){
+        return ResponseEntity.ok(userService.register(request));
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponse>getUserProfile(@PathVariable String userId){
+        return ResponseEntity.ok(userService.getUserProfile(userId));
+    }
+
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean>validateUser(@PathVariable String userId){
+        return ResponseEntity.ok(userService.existByUserId(userId));
+    }
+}
