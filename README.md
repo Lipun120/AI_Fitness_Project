@@ -49,7 +49,7 @@ Tech Stack :-
 
 -> Database
 
--> MySQL / PostgreSQL
+-> MySQL / PostgreSQL / MongoDB
 
 Tools & Platforms:-
 
